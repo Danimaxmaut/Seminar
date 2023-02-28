@@ -1,0 +1,26 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+int fib(int n, unordered_map<int, int>& cache) {
+    if (n < 2) {
+        return n;
+    }
+    if (cache.find(n) != cache.end()) {
+        return cache[n];
+    }
+    int result = fib(n - 1, cache) + fib(n - 2, cache);
+    cache[n] = result;
+    return result;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    unordered_map<int, int> cache;
+    for (int i = 0; i < n; ++i) {
+        cout << fib(i, cache) << " ";
+    }
+    cout << endl;
+    return 0;
+}
